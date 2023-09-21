@@ -34,21 +34,34 @@ import me.topilov.notesapp.ui.theme.PurpleGrey80
 
 @Composable
 fun NotesScreen(viewModel: NoteViewModel) {
-    val notes = viewModel.notes.collectAsState(initial = emptyList())
+    val notes by viewModel.notes.collectAsState(initial = emptyList())
 
+    NotesScreen(
+        notes = notes,
+        onCreate = viewModel::insertNote,
+        onUpdate = viewModel::updateNote,
+        onDelete = viewModel::deleteNote,
+    )
+}
+
+@Composable
+fun NotesScreen(
+    notes: List<Note>,
+    onCreate: () -> Unit,
+    onUpdate: (Note) -> Unit,
+    onDelete: (Note) -> Unit,
+) {
     Column {
         NotesButton(
             text = stringResource(id = R.string.create_note),
-            onClick = {
-                viewModel.insertNote()
-            }
+            onClick = onCreate,
         )
         LazyColumn {
-            items(notes.value) { note ->
+            items(notes) { note ->
                 NoteCard(
                     note = note,
-                    onUpdate = { viewModel.updateNote(note) },
-                    onDelete = { viewModel.deleteNote(note) }
+                    onUpdate = onUpdate,
+                    onDelete = onDelete,
                 )
             }
         }
@@ -76,8 +89,8 @@ fun NotesButton(
 @Composable
 fun NoteCard(
     note: Note,
-    onUpdate: () -> Unit,
-    onDelete: () -> Unit,
+    onUpdate: (Note) -> Unit,
+    onDelete: (Note) -> Unit,
 ) {
     var title by remember { mutableStateOf(note.title) }
     var description by remember { mutableStateOf(note.description) }
@@ -116,12 +129,12 @@ fun NoteCard(
                     Button(
                         modifier = Modifier.padding(8.dp),
                         content = { Text(text = stringResource(id = R.string.update_note)) },
-                        onClick = onUpdate,
+                        onClick = { onUpdate(note) },
                     )
                     Button(
                         modifier = Modifier.padding(8.dp),
                         content = { Text(text = stringResource(R.string.delete_note)) },
-                        onClick = onDelete,
+                        onClick = { onDelete(note) },
                     )
                 }
             }
