@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import me.topilov.notesapp.domain.repositories.NoteRepository
 import me.topilov.notesapp.ui.notes.NotesScreen
+import me.topilov.notesapp.ui.theme.NotesAppTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NotesScreen(viewModel = noteViewModel)
+            NotesAppTheme {
+                NotesScreen(viewModel = noteViewModel)
+            }
         }
     }
 }
