@@ -9,4 +9,5 @@ data class Note(
     @PrimaryKey(autoGenerate = true) var id: Int? = null,
     @ColumnInfo("title") var title: String = "",
     @ColumnInfo("description") var description: String = "",
+    @ColumnInfo("timestamp") var timestamp: Long = 0L,
 )

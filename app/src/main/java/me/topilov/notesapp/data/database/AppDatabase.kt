@@ -7,7 +7,7 @@ import me.topilov.notesapp.data.entities.Note
 
 @Database(
     entities = [Note::class],
-    version = 2,
+    version = 3,
     exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">NotesApp</string>
-    <string name="update_note">Update</string>
-    <string name="delete_note">Delete</string>
-    <string name="create_note">Create note</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
+    <string name="update_note">Обновить</string>
+    <string name="delete_note">Удалить</string>
+    <string name="create_note">Создать</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="search_notes">Поиск</string>
+    <string name="sort">Сортировка</string>
+    <string name="notes_empty">Заметок не найдено</string>
+    <string name="sort_by_date_ascending">По Дате по возрастанию</string>
+    <string name="sort_by_date_descending">По Дате по убыванию</string>
+    <string name="sort_by_title_ascending">По Заголовку по возрастанию</string>
+    <string name="sort_by_title_descending">По Заголовку по убыванию</string>
 </resources>
